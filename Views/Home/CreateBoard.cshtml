@@ -1,19 +1,26 @@
-﻿@model UserBoard
-@{
+﻿@{
     ViewData["Title"] = "Create Board";
 }
 
-@section header {
-    <partial name="_Header" />
-}
-<form asp-controller="Home" asp-action="Index" method="post" role="form">
+<form asp-controller="Home" asp-action="CreateBoard" method="post" role="form">
     <h4>Create new board</h4>
 
     <div class="row g-3 align-items-center">
-        <div class="col-auto">
-            <input type="text" asp-for="BoardName" class="form-control" placeholder="Board name">
+        <div class="row-auto form-floating mb-2 col-xs-3">
+            <input type="text" name="boardName" class="form-control" placeholder="Board name">
+            <label for="boardName">Board name</label>
         </div>
-        <div class="col-auto">
+
+        <div class="row-auto form-floating mb-2 col-xs-3">
+            <label for="datePicker">Select a date:</label>
+            <input type="date" name="selectedDate" id="datePicker" value="" class="form-control" />
+        </div>
+        <div class="row-auto form-floating mb-2 col-xs-3">
+            <input type="text" name="daysCount" class="form-control" placeholder="Board name">
+            <label for="daysCount">Days count</label>
+        </div>
+
+        <div class="row-auto form-floating mb-2 ">
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </div>
     </div>

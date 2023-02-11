@@ -10,15 +10,11 @@ namespace wordleboard.Models
         public int BoardId { get; set; }
         public string? BoardName { get; set; }
         public int DaysCount { get; set; }
-
-        public UserBoard(string userId, int boardId)
-        {
-            UserId = userId; BoardId = boardId;
-        }
+        public long StartDate { get; set; }
 
         public override string ToString()
         {
-            return $"User: {UserId}, BoardId: {BoardId}, BoardName: {BoardName}";
+            return $"User: {UserId}, BoardId: {BoardId}, BoardName: {BoardName}, StartDate: {StartDate}";
         }
     }
 }

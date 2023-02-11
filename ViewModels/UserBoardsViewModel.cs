@@ -3,6 +3,7 @@ using wordleboard.Models;
 
 namespace wordleboard.ViewModels
 {
+    [Serializable]
     public class UserBoardsViewModel
     {
         public IdentityUser? User { get; set; }

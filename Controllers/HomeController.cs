@@ -32,14 +32,14 @@ namespace wordleboard.Controllers
                 //userWordle.UserId = user.Id;
                 //userWordle.WordleId = AppUtils.TodayWordleId;
 
-                var todayWordle = _wordleRepo.AllWordlesForUser(user.Id).Where(w => w.UserId == user.Id).ToList().OrderByDescending(w => w.WordleId);
+                var todayWordle = _wordleRepo.AllWordlesForUser(user.Id).FirstOrDefault(w => w.WordleId == AppUtils.TodayWordleId);
 
-                if (todayWordle.Count() > 0)
+                if (todayWordle != null)
                 {
-                    userWordle = todayWordle.First();
+                    userWordle = todayWordle;
                 }
 
-                var userBoardsViewModel = new UserBoardsViewModel(user, _boardRepo.AllBoards.ToList(), userWordle);
+                var userBoardsViewModel = new UserBoardsViewModel(user, _boardRepo.AllBoardsForUser(user.Id).ToList(), userWordle);
 
                 return View(userBoardsViewModel);
             }
@@ -48,18 +48,25 @@ namespace wordleboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(UserBoardsViewModel obj)
+        public IActionResult Index(int points, int bonus)
         {
-            Console.WriteLine($"Post {obj.TodayWordle.ToString()}");
             var user = _userManager.GetUserAsync(User).Result;
 
-            if (_wordleRepo.AllWordlesForUser(user.Id).Exists(x => x.WordleId == obj.TodayWordle.WordleId && x.UserId == obj.TodayWordle.UserId))
+            UserWordle userWordle = new UserWordle
             {
-                _wordleRepo.UpdateWordle(obj.TodayWordle);
+                WordleId = AppUtils.TodayWordleId,
+                UserId = user.Id,
+                Points = points,
+                Bonus = bonus
+            };
+
+            if (_wordleRepo.AllWordlesForUser(user.Id).Exists(x => x.WordleId == userWordle.WordleId && x.UserId == userWordle.UserId))
+            {
+                _wordleRepo.UpdateWordle(userWordle);
             }
             else
             {
-                _wordleRepo.AddWordle(obj.TodayWordle);
+                _wordleRepo.AddWordle(userWordle);
             }
 
             return Index();
@@ -72,18 +79,28 @@ namespace wordleboard.Controllers
 
         public IActionResult CreateBoard()
         {
-            var user = _userManager.GetUserAsync(User).Result;
-
-            var userBoard = new UserBoard(user.Id, _boardRepo.AllBoards.Count());
-
-            return View(userBoard);
+            return View();
         }
 
         [HttpPost]
-        public IActionResult CreateBoard(UserBoard userBoard)
+        public IActionResult CreateBoard(DateTime selectedDate, string boardName, int daysCount)
         {
+            long secondsSinceEpoch = (long)(selectedDate - new DateTime(1970, 1, 1)).TotalSeconds;
+
+            var user = _userManager.GetUserAsync(User).Result;
+
+            var userBoard = new UserBoard
+            {
+                UserId = user.Id,
+                BoardName = boardName,
+                BoardId = _boardRepo.BoardCount,
+                StartDate = secondsSinceEpoch,
+                DaysCount = daysCount
+            };
+
+
             Console.WriteLine(userBoard.ToString());
-            //_dbContext.UserBoards.Add(userBoard);
+            //_boardRepo.AddBoard(userBoard);
 
             return Index();
         }

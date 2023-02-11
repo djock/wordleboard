@@ -2,9 +2,10 @@
 {
     public interface IBoardRepository
     {
-        List<UserBoard> AllBoards { get; }
+        int BoardCount { get; }
+        List<UserBoard> AllBoardsForUser(string userId);
         UserBoard? GetById(int id);
 
-        void Add(UserBoard board);
+        void AddBoard(UserBoard board);
     }
 }

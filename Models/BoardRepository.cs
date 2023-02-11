@@ -4,14 +4,16 @@
     {
         private readonly WordleBoardDbContext _dbContext;
 
+        public int BoardCount => _dbContext.UserBoards.Count();
+
         public BoardRepository(WordleBoardDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public List<UserBoard> AllBoards => _dbContext.UserBoards.ToList();
+        public List<UserBoard> AllBoardsForUser(string userId) => _dbContext.UserBoards.Where(b => b.UserId == userId).ToList();
 
-        public void Add(UserBoard board)
+        public void AddBoard(UserBoard board)
         {
             _dbContext.UserBoards.Add(board);
             _dbContext.SaveChanges();
