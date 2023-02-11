@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="container text-center">
+    <partial name="_WelcomeTexts" />
+    <div class="row justify-content-center">
+        <div class="container">
+            <div class="col-md-6 offset-md-3 text-center">
+                <div class="d-flex flex-column justify-content-center">
+                    <br />
+                </div>
+                <div>
+                    <a class="btn btn-lg btn-primary" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    <a class="btn btn-lg btn-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

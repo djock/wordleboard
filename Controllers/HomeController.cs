@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using wordleboard.Models;
 
+
 namespace wordleboard.Controllers
 {
     public class HomeController : Controller
@@ -14,6 +15,17 @@ namespace wordleboard.Controllers
         }
 
         public IActionResult Index()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Welcome");
+
+        }
+
+        public IActionResult Welcome()
         {
             return View();
         }
