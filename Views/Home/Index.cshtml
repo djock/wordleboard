@@ -1,4 +1,21 @@
-﻿@{
+﻿@model UserBoardsViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+@section header {
+    <partial name="_Header" />
+}
+
+<partial name="_TodayWordleInfo" />
+
+@if (Model.UserBoards.Count() != 0)
+{
+
+}
+else
+{
+    <p>You are not taking part in any leaderboard at the moment, create one to get started</p>
+    <a class="btn btn-lg btn-primary" id="register" asp-area="" asp-controller="Home" asp-action="CreateBoard">Create Board</a>
+}

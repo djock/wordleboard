@@ -1,0 +1,20 @@
+﻿@model UserBoard
+@{
+    ViewData["Title"] = "Create Board";
+}
+
+@section header {
+    <partial name="_Header" />
+}
+<form asp-controller="Home" asp-action="Index" method="post" role="form">
+    <h4>Create new board</h4>
+
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <input type="text" asp-for="BoardName" class="form-control" placeholder="Board name">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+    </div>
+</form>

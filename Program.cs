@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using wordleboard.Models;
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("WordleBoardDbContextConnection") ?? throw new InvalidOperationException("Connection string 'WordleBoardDbContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("WordleboardDbContextConnection") ?? throw new InvalidOperationException("Connection string 'WordleBoardDbContextConnection' not found.");
 
 builder.Services.AddDbContext<WordleBoardDbContext>(options =>
     options.UseSqlServer(connectionString));

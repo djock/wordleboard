@@ -8,5 +8,7 @@ namespace wordleboard.Models
         public WordleBoardDbContext(DbContextOptions<WordleBoardDbContext> options) : base(options)
         {
         }
+
+        public DbSet<UserBoard> UserBoards { get; set; }
     }
 }

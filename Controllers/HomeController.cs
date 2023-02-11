@@ -1,16 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using wordleboard.Models;
-
+using wordleboard.ViewModels;
 
 namespace wordleboard.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly WordleBoardDbContext _dbContext;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(WordleBoardDbContext dbContext, UserManager<IdentityUser> userManager, ILogger<HomeController> logger)
         {
+            _dbContext = dbContext;
+            _userManager = userManager;
             _logger = logger;
         }
 
@@ -18,7 +23,12 @@ namespace wordleboard.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return View();
+                Console.WriteLine("User is authenticated");
+                var user = _userManager.GetUserAsync(User).Result;
+
+                var userBoardsViewModel = new UserBoardsViewModel(user, _dbContext.UserBoards.ToList());
+
+                return View(userBoardsViewModel);
             }
 
             return RedirectToAction("Welcome");
@@ -28,6 +38,24 @@ namespace wordleboard.Controllers
         public IActionResult Welcome()
         {
             return View();
+        }
+
+        public IActionResult CreateBoard()
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+
+            var userBoard = new UserBoard(user.Id, _dbContext.UserBoards.Count());
+
+            return View(userBoard);
+        }
+
+        [HttpPost]
+        public IActionResult CreateBoard(UserBoard userBoard)
+        {
+            Console.WriteLine(userBoard.ToString());
+            //_dbContext.UserBoards.Add(userBoard);
+
+            return Index();
         }
 
         public IActionResult Privacy()
