@@ -10,5 +10,6 @@ namespace wordleboard.Models
         }
 
         public DbSet<UserBoard> UserBoards { get; set; }
+        public DbSet<UserWordle> UserWordles { get; set; }
     }
 }

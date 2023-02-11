@@ -7,11 +7,15 @@ namespace wordleboard.ViewModels
     {
         public IdentityUser? User { get; set; }
         public List<UserBoard> UserBoards { get; set; }
+        public UserWordle TodayWordle { get; set; }
 
-        public UserBoardsViewModel(IdentityUser user, List<UserBoard> boards)
+        public UserBoardsViewModel() { }
+
+        public UserBoardsViewModel(IdentityUser user, List<UserBoard> boards, UserWordle todayWordle)
         {
             User = user;
             UserBoards = boards;
+            TodayWordle = todayWordle;
         }
     }
 }

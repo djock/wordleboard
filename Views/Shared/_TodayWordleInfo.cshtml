@@ -1,11 +1,5 @@
-﻿@using wordleboard.Constants
-
-@{
-    var wordleStartDate = AppConstants.WordleStartDate;
-
-    var dayIndex = DateTime.Now.Subtract(wordleStartDate).Days;
-}
+﻿@using wordleboard.Utils
 
 <h4>Hello Wordler</h4>
-<h4>@DateTime.Now.ToString("d MMMM yyyy"), @dayIndex</h4>
+<h4>@DateTime.Now.ToString("d MMMM yyyy"), #@AppUtils.TodayWordleId</h4>
 <br />

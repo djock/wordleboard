@@ -1,4 +1,4 @@
-﻿namespace wordleboard.Constants
+﻿namespace wordleboard.Utils
 {
     public static class AppConstants
     {

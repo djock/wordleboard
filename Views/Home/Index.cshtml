@@ -4,11 +4,43 @@
     ViewData["Title"] = "Home Page";
 }
 
-@section header {
+@*
+    @section header {
     <partial name="_Header" />
 }
+*@
 
 <partial name="_TodayWordleInfo" />
+
+@if (Model.TodayWordle.Points == 0)
+{
+    <form asp-controller="Home" asp-action="Index" method="post" role="form">
+        <h4>Submit Score</h4>
+
+        <div class="row g-3 align-items-center">
+
+            <div class="col-auto form-floating mb-2">
+                <input type="number" asp-for="TodayWordle.Points" min="0" max="10" class="form-control" placeholder="Points">
+                <label asp-for="TodayWordle.Points" class="form-label"></label>
+                <span asp-validation-for="TodayWordle.Points" class="text-danger"></span>
+            </div>
+
+            <div class="col-auto form-floating mb-2">
+                <input type="number" asp-for="TodayWordle.Bonus" min="0" max="5" class="form-control" placeholder="Points">
+                <label asp-for="TodayWordle.Bonus" class="form-label"></label>
+                <span asp-validation-for="TodayWordle.Bonus" class="text-danger"></span>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    Console.WriteLine("Hello World " + Model.TodayWordle);
+}
 
 @if (Model.UserBoards.Count() != 0)
 {

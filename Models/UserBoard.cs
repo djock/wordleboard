@@ -9,6 +9,7 @@ namespace wordleboard.Models
         public string? UserId { get; set; }
         public int BoardId { get; set; }
         public string? BoardName { get; set; }
+        public int DaysCount { get; set; }
 
         public UserBoard(string userId, int boardId)
         {

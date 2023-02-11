@@ -6,19 +6,11 @@
     <title>@ViewData["Title"] - wordleboard</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/ows.ico" />
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/wordleboard.styles.css" asp-append-version="true" />
-
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
 </head>
 <body>
-    @RenderSection("header", false)
-    <partial name="_Header" />
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -27,9 +19,11 @@
 
     <footer class="border-top footer text-center">
         <div class="container">
-            &copy; 2023 - wordleboard  
+            &copy; 2023 - wordleboard
         </div>
     </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
