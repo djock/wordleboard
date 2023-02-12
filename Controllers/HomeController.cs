@@ -9,12 +9,12 @@ namespace wordleboard.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IBoardRepository _boardRepo;
         private readonly IWordleRepository _wordleRepo;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(IBoardRepository userBoardRepository, IWordleRepository userWordleRepository, UserManager<IdentityUser> userManager, ILogger<HomeController> logger)
+        public HomeController(IBoardRepository userBoardRepository, IWordleRepository userWordleRepository, UserManager<ApplicationUser> userManager, ILogger<HomeController> logger)
         {
             _boardRepo = userBoardRepository;
             _wordleRepo = userWordleRepository;
@@ -83,24 +83,24 @@ namespace wordleboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBoard(DateTime selectedDate, string boardName, int daysCount)
+        public IActionResult CreateBoard(DateTime selectedDate, string boardName, string boardDescription, int daysCount)
         {
             long secondsSinceEpoch = (long)(selectedDate - new DateTime(1970, 1, 1)).TotalSeconds;
 
             var user = _userManager.GetUserAsync(User).Result;
+            var applicationUser = user as ApplicationUser;
 
-            var userBoard = new UserBoard
+            var userBoard = new Board
             {
-                UserId = user.Id,
                 BoardName = boardName,
+                BoardDescription = boardDescription,
                 BoardId = _boardRepo.BoardCount,
                 StartDate = secondsSinceEpoch,
-                DaysCount = daysCount
+                DaysCount = daysCount,
             };
 
 
-            Console.WriteLine(userBoard.ToString());
-            //_boardRepo.AddBoard(userBoard);
+            _boardRepo.AddBoard(userBoard, applicationUser);
 
             return Index();
         }

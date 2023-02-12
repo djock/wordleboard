@@ -1,7 +1,10 @@
-﻿@model UserBoardsViewModel
+﻿@using wordleboard.Utils;
+@model UserBoardsViewModel
 
 @{
     ViewData["Title"] = "Home Page";
+
+    Console.WriteLine(Model.UserBoards.Count());
 }
 
 @*
@@ -41,8 +44,28 @@ else
 }
 <br />
 
+
 @if (Model.UserBoards.Count() != 0)
 {
+    <div class="container">
+        <div class="row">
+            @foreach (var board in Model.UserBoards)
+            {
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            @board.BoardName
+                        </div>
+                        <div class="card-body">
+                            <h5 id="card-text" class="card-text">@board.BoardDescription</h5>
+                            <h6 class="card-text">Start date: @AppUtils.FormatDate(board.StartDate)</h6>
+                            <a asp-controller="Board" asp-action="Index" asp-route-id="@board.BoardId" class="btn btn-primary">Open</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 }
 else
 {

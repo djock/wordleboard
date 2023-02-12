@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -24,10 +24,38 @@ ul {
     list-style-type: none;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
     font-family: "Libre Baskerville"
 }
 
 .nav-link {
     font-family: "Libre Baskerville" !important
+}
+
+#dropdownMenuButton1 {
+    font-family: "Libre Baskerville"
+}
+
+.dropdown-menu {
+    background-color: #E3E3E1;
+    border: none;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+    .card-body .btn {
+        margin-top: auto;
+        width: auto;
+    }
+
+#card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* set the number of lines to display */
+    -webkit-box-orient: vertical;
+    /*min-height: 80px;*/ /* set the minimum height to 4 lines */
+    overflow: hidden; /* hide overflowing text */
+    text-overflow: ellipsis; /* show ellipsis (...) when text overflows */
 }

@@ -7,7 +7,7 @@ var connectionString = builder.Configuration.GetConnectionString("WordleBoardDbC
 builder.Services.AddDbContext<WordleBoardDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireNonAlphanumeric = false;
@@ -23,6 +23,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IBoardRepository, BoardRepository>();
 builder.Services.AddScoped<IWordleRepository, WordleRepository>();
+
+builder.Services.AddScoped<UserManager<ApplicationUser>, UserManager<ApplicationUser>>();
+builder.Services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
 
 var app = builder.Build();
 

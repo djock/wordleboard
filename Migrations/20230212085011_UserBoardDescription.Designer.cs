@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using wordleboard.Models;
 
@@ -11,9 +12,10 @@ using wordleboard.Models;
 namespace wordleboard.Migrations
 {
     [DbContext(typeof(WordleBoardDbContext))]
-    partial class WordleBoardDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212085011_UserBoardDescription")]
+    partial class UserBoardDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,10 +88,6 @@ namespace wordleboard.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -141,8 +139,6 @@ namespace wordleboard.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -230,7 +226,7 @@ namespace wordleboard.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("wordleboard.Models.Board", b =>
+            modelBuilder.Entity("wordleboard.Models.UserBoard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -253,27 +249,12 @@ namespace wordleboard.Migrations
                     b.Property<long>("StartDate")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Boards");
-                });
-
-            modelBuilder.Entity("wordleboard.Models.BoardUser", b =>
-                {
-                    b.Property<int>("BoardId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("BoardId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("BoardUsers");
+                    b.ToTable("UserBoards");
                 });
 
             modelBuilder.Entity("wordleboard.Models.UserWordle", b =>
@@ -299,13 +280,6 @@ namespace wordleboard.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserWordles");
-                });
-
-            modelBuilder.Entity("wordleboard.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -357,35 +331,6 @@ namespace wordleboard.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("wordleboard.Models.BoardUser", b =>
-                {
-                    b.HasOne("wordleboard.Models.Board", "Board")
-                        .WithMany("BoardUsers")
-                        .HasForeignKey("BoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("wordleboard.Models.ApplicationUser", "User")
-                        .WithMany("BoardUsers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Board");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("wordleboard.Models.Board", b =>
-                {
-                    b.Navigation("BoardUsers");
-                });
-
-            modelBuilder.Entity("wordleboard.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("BoardUsers");
                 });
 #pragma warning restore 612, 618
         }

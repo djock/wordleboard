@@ -3,9 +3,11 @@
     public interface IBoardRepository
     {
         int BoardCount { get; }
-        List<UserBoard> AllBoardsForUser(string userId);
-        UserBoard? GetById(int id);
+        List<Board> AllBoardsForUser(string userId);
+        Board? GetById(int id);
 
-        void AddBoard(UserBoard board);
+        void AddBoard(Board board, ApplicationUser user);
+
+        List<string> GetAllUsersInBoard(int boardId);
     }
 }
