@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using wordleboard.Models;
+using wordleboard.ViewModels;
 
 namespace wordleboard.Controllers
 {
@@ -14,37 +15,42 @@ namespace wordleboard.Controllers
             _wordleRepo = wordleRepo;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index(int boardId)
         {
-            var usersIdList = _boardRepo.GetAllUsersInBoard(id);
 
-            List<UserWordle> userResults = new();
+            var usersIdList = _boardRepo.GetAllUsersInBoard(boardId);
+            var board = _boardRepo.GetById(boardId);
+            Console.WriteLine("Index " + board.ToString());
 
-            foreach (var user in usersIdList)
-            {
-                //if (board.DaysCount > 0)
-                //{
-                //    var endDate = AppUtils.GetWordleDayFromTimestamp(board.StartDate) + board.DaysCount;
+            //List<UserWordle> userResults = new();
 
-                //    var maxDay = endDate <= AppUtils.TodayWordleId ? endDate : AppUtils.TodayWordleId;
+            //foreach (var user in usersIdList)
+            //{
+            //    //if (board.DaysCount > 0)
+            //    //{
+            //    //    var endDate = AppUtils.GetWordleDayFromTimestamp(board.StartDate) + board.DaysCount;
 
-                //    for (var i = board.StartDate; i <= maxDay; i++)
-                //    {
-                //    }
-                //}
-                //else
-                //{
-                //    for (var i = board.StartDate; i <= board.StartDate + board.DaysCount; i++)
-                //    {
-                //    }
+            //    //    var maxDay = endDate <= AppUtils.TodayWordleId ? endDate : AppUtils.TodayWordleId;
 
-                //    foreach (var wordle in _wordleRepo.AllWordlesForUser(user))
-                //    {
-                //    }
-                //}
-            }
+            //    //    for (var i = board.StartDate; i <= maxDay; i++)
+            //    //    {
+            //    //    }
+            //    //}
+            //    //else
+            //    //{
+            //    //    for (var i = board.StartDate; i <= board.StartDate + board.DaysCount; i++)
+            //    //    {
+            //    //    }
 
-            return View();
+            //    //    foreach (var wordle in _wordleRepo.AllWordlesForUser(user))
+            //    //    {
+            //    //    }
+            //    //}
+            //}
+
+            var boardViewModel = new BoardViewModel(board, usersIdList);
+
+            return View(boardViewModel);
         }
     }
 }

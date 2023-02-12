@@ -40,7 +40,17 @@
         {
         }
 
-        public Board GetById(int id) => _dbContext.Boards.FirstOrDefault(b => b.Id == id);
+        public Board GetById(int boardId)
+        {
+            var board = _dbContext.Boards.FirstOrDefault(bu => bu.BoardId == boardId);
+
+            if (board == null)
+            {
+                Console.WriteLine("Board Not found");
+            }
+
+            return board;
+        }
 
         public List<string> GetAllUsersInBoard(int boardId)
         {

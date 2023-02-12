@@ -1,16 +1,20 @@
-﻿using wordleboard.Migrations;
+﻿using wordleboard.Models;
 
 namespace wordleboard.ViewModels
 {
     public class BoardViewModel
     {
-        public string BoardName;
-        public List<UserWordle> Wordles { get; set; }
+        public Board Board;
+        //public List<Models.UserWordle> Wordles { get; set; }
+        public List<string> Users { get; set; }
         public BoardViewModel() { }
-        public BoardViewModel(string boardName, List<UserWordle> wordles)
+
+        public BoardViewModel(Board board, List<string> users)
         {
-            BoardName = boardName;
-            Wordles = wordles;
+            Board = board;
+            Users = users;
+
+            Console.WriteLine("BoardViewModel " + board.ToString());
         }
     }
 }

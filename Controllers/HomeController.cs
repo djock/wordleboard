@@ -90,7 +90,7 @@ namespace wordleboard.Controllers
             var user = _userManager.GetUserAsync(User).Result;
             var applicationUser = user as ApplicationUser;
 
-            var userBoard = new Board
+            var board = new Board
             {
                 BoardName = boardName,
                 BoardDescription = boardDescription,
@@ -100,7 +100,7 @@ namespace wordleboard.Controllers
             };
 
 
-            _boardRepo.AddBoard(userBoard, applicationUser);
+            _boardRepo.AddBoard(board, applicationUser);
 
             return Index();
         }

@@ -3,14 +3,13 @@
 
 @{
     ViewData["Title"] = "Home Page";
-
-    Console.WriteLine(Model.UserBoards.Count());
 }
 
 @*
     @section header {
     <partial name="_Header" />
-}
+    }
+    
 *@
 
 <partial name="_TodayWordleInfo" />
@@ -59,7 +58,7 @@ else
                         <div class="card-body">
                             <h5 id="card-text" class="card-text">@board.BoardDescription</h5>
                             <h6 class="card-text">Start date: @AppUtils.FormatDate(board.StartDate)</h6>
-                            <a asp-controller="Board" asp-action="Index" asp-route-id="@board.BoardId" class="btn btn-primary">Open</a>
+                            <a asp-controller="Board" asp-action="Index" asp-route-boardId="@board.BoardId" class="btn btn-primary">Open</a>
                         </div>
                     </div>
                 </div>
