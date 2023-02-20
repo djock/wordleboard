@@ -1,4 +1,6 @@
-﻿namespace wordleboard.Models
+﻿using System.Text.Json;
+
+namespace wordleboard.Models
 {
     public class WordleResultsRepository : IWordleResultsRepository
     {
@@ -46,8 +48,9 @@
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(body);
-                return body;
+
+                var todayWordleResult = JsonSerializer.Deserialize<TodayWordleResult>(body);
+                return todayWordleResult.today;
             }
         }
     }

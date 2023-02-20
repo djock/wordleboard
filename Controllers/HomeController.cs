@@ -25,6 +25,11 @@ namespace wordleboard.Controllers
             {
                 var user = _userManager.GetUserAsync(User).Result;
 
+                if (user == null)
+                {
+                    return RedirectToAction("Welcome");
+                }
+
                 UserWordle userWordle = new UserWordle { WordleId = AppUtils.TodayWordleId, UserId = user.Id };
 
                 var todayWordle = _wordleRepo.AllWordlesForUser(user.Id).FirstOrDefault(w => w.WordleId == AppUtils.TodayWordleId);
@@ -35,7 +40,7 @@ namespace wordleboard.Controllers
                 }
                 else
                 {
-                    Console.WriteLine("Can't find answer for today");
+                    Console.WriteLine("Can't find score for today");
                 }
 
                 return View(userWordle);

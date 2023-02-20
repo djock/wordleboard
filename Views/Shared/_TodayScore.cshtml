@@ -24,13 +24,12 @@
                 url: "/api/SubmitWordle",
                 type: "POST",
                 contentType: "application/json",
-                dataType: "json",
                 data: JSON.stringify({ points: pointsVal, bonus: bonusVal }),
                 success: function (result) {
                     console.log("Success:", result);
 
                     $("#holder").append($('<h4>Score for today:' + pointsVal + '</h4>'));
-                    $("#holder").append($('<h4> Today wordle:' + result + '</h4>'));
+                    $("#holder").append($('<h4> Today wordle: ' + result + '</h4>'));
                 },
                 error: function (error) {
                     console.log("Error:", error); 
