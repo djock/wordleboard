@@ -7,5 +7,10 @@
         public string UserId { get; set; }
         public virtual Board Board { get; set; }
         public virtual ApplicationUser User { get; set; }
+
+        public override string ToString()
+        {
+            return $"User {User.Id} on board {Board.Id}";
+        }
     }
 }

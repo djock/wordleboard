@@ -8,6 +8,8 @@
 
         void AddBoard(Board board, ApplicationUser user);
 
+        void AddUserToBoard(int boardId, string userId);
+
         List<string> GetAllUsersInBoard(int boardId);
     }
 }

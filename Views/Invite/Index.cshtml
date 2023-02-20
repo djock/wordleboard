@@ -1,0 +1,10 @@
+﻿@model BoardViewModel
+
+@{
+    ViewData["Title"] = "Board Invite";
+}
+
+<h4>You have been invited to join board: @Model.Board.BoardName</h4>
+
+<a asp-controller="Invite" asp-action="Accept" asp-route-id="@Model.Board.Id" class="btn btn-primary">Accept</a>
+<a asp-controller="Invite" asp-action="Decline" class="btn btn-danger">Decline</a>

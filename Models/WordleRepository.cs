@@ -13,13 +13,13 @@
 
         public void AddWordle(UserWordle wordle)
         {
-            Console.WriteLine($"Add {wordle.WordleId}");
+            Console.WriteLine($"Add {wordle.ToString()}");
 
             _dbContext.UserWordles.Add(wordle);
             _dbContext.SaveChanges();
         }
 
-        public UserWordle? GetById(int id) => _dbContext.UserWordles.FirstOrDefault(w => w.Id == id);
+        public UserWordle? GetById(int id) => _dbContext.UserWordles.FirstOrDefault(w => w.WordleId == id);
 
         public void UpdateWordle(UserWordle wordle)
         {
@@ -35,5 +35,7 @@
 
             _dbContext.SaveChanges();
         }
+
+        public UserWordle? GetByIdForUser(int id, string userId) => _dbContext.UserWordles.FirstOrDefault(w => w.WordleId == id && w.UserId == userId);
     }
 }

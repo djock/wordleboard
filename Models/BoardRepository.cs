@@ -38,11 +38,29 @@
 
         public void AddUserToBoard(int boardId, string userId)
         {
+            var board = _dbContext.Boards.FirstOrDefault(b => b.Id == boardId);
+            var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (board != null && user != null)
+            {
+                var boardUser = new BoardUser
+                {
+                    BoardId = boardId,
+                    UserId = userId,
+                    Board = board,
+                    User = user
+                };
+
+                Console.WriteLine(boardUser.ToString());
+
+                _dbContext.BoardUsers.Add(boardUser);
+                _dbContext.SaveChanges();
+            }
         }
 
         public Board GetById(int boardId)
         {
-            var board = _dbContext.Boards.FirstOrDefault(bu => bu.BoardId == boardId);
+            var board = _dbContext.Boards.FirstOrDefault(bu => bu.Id == boardId);
 
             if (board == null)
             {

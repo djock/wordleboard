@@ -1,0 +1,20 @@
+﻿@model List<Board>
+
+@if (Model.Count() != 0)
+{
+    <div class="container">
+        <div class="row">
+            @foreach (var board in Model)
+            {
+                <div class="col-md-4">
+                    <partial name="_Board" model="board" />
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <p>You are not taking part in any leaderboard at the moment, create one to get started</p>
+    <a class="btn btn-lg btn-primary" id="register" asp-area="" asp-controller="Board" asp-action="Create">Create Board</a>
+}

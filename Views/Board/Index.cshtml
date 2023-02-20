@@ -1,12 +1,122 @@
-﻿@model BoardViewModel
+﻿@using wordleboard.Utils;
+@model BoardViewModel
+
 @{
     ViewData["Title"] = "Board";
     Console.WriteLine("cshtml: " + Model.Board.ToString());
+    List<int> uniqueWordles = new List<int>();
+
+    string GetCellColor(int points, int bonus)
+    {
+        if (points == 10)
+        {
+            return "#EA9999";
+        }
+
+        switch (bonus)
+        {
+            case 1:
+                return "#D9D2E9";
+            case 2:
+                return "#B4A7D6";
+            case 3:
+                return "#8E7CC3";
+
+            default:
+                return "#E3E3E1";
+        }
+    }
+
 }
 
-<p>Hello board</p>
+<h4>@Model.Board.BoardName</h4>
+<p>Start: @AppUtils.FormatDate(Model.Board.StartDate)</p>
 
-@foreach(var item in Model.Users)
+@if (Model.Board.DaysCount != 0)
 {
-    <p>@item</p>
+    var endDate = AppUtils.GetDateFromSeconds(Model.Board.StartDate).AddDays(Model.Board.DaysCount-1);
+    <p>End: @endDate.ToString("dd MMM yyyy")</p>
 }
+
+
+<h3>Wordles</h3>
+
+<div class="text-center" style="margin-top: 10px;">
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                @foreach (var user in Model.Users)
+                {
+                    <th>@user.UserName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th scope="col">TOTAL</th>
+                @foreach (var user in Model.Users)
+                {
+                    var total = Model.Wordles.Where(x => x != null && x.UserId == user.Id).Sum(x => x!.Points);
+
+                    <th>
+                        @total
+                    </th>
+                }
+            </tr>
+
+            <tr class="border-bottom-0">
+                <th scope="col">AVG</th>
+                @foreach (var user in Model.Users)
+                {
+                    var avg = Model.Wordles.Where(x => x != null && x.UserId == user.Id).Average(x => x!.Points);
+
+                    <th>
+                        @avg.ToString("0.000")
+                    </th>
+                }
+            </tr>
+
+            @foreach (var wordle in Model.Wordles)
+            {
+                if (wordle == null) continue;
+                if (uniqueWordles.Contains(wordle.WordleId)) continue;
+
+                <tr>
+                    <th scope="row">@wordle.WordleId</th>
+
+                    @foreach (var user in Model.Users)
+                    {
+                        var userWordleScore = Model.Wordles.FirstOrDefault(x => x != null && x.UserId == user.Id && wordle.WordleId == x.WordleId);
+                        if (userWordleScore == null)
+                        {
+                            <td>-</td>
+                        }
+                        else
+                        {
+                            string color = GetCellColor(userWordleScore.Points, userWordleScore.Bonus);
+
+                            if (userWordleScore.Bonus == 0)
+                            {
+                                <td style="background-color: @color;">@userWordleScore!.Points</td>
+
+                            }
+                            else
+                            {
+                                <td style="background-color: @color;">
+                                    <a style="display:block; color: inherit; text-decoration: none;" href="javascript:;" data-toggle="tooltip" data-placement="top" title="Tetris bonus: @userWordleScore.Bonus">
+                                        @userWordleScore!.Points
+                                    </a>
+                                </td>
+                            }
+                        }
+                    }
+                </tr>
+
+                uniqueWordles.Add(wordle.WordleId);
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,5 @@
+﻿@{
+    ViewData["Title"] = "All Boards";
+}
+
+@await Component.InvokeAsync("BoardsList", new { showActive = false })

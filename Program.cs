@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using wordleboard.Models;
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("WordleBoardDbContextConnection") ?? throw new InvalidOperationException("Connection string 'WordleBoardDbContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("WordleboardDbContextConnection") ?? throw new InvalidOperationException("Connection string 'WordleboardDbContextConnection' not found.");
 
 builder.Services.AddDbContext<WordleBoardDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -18,14 +18,19 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 })
     .AddEntityFrameworkStores<WordleBoardDbContext>();
 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IBoardRepository, BoardRepository>();
 builder.Services.AddScoped<IWordleRepository, WordleRepository>();
+builder.Services.AddScoped<IWordleResultsRepository, WordleResultsRepository>();
+builder.Services.AddHttpClient<IWordleResultsRepository, WordleResultsRepository>();
 
 builder.Services.AddScoped<UserManager<ApplicationUser>, UserManager<ApplicationUser>>();
 builder.Services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
+
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -49,6 +54,7 @@ app.MapRazorPages();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
 app.UseEndpoints(endpoints =>
 {

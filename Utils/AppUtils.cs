@@ -24,5 +24,12 @@
 
             return wordleId;
         }
+
+        public static string GetDateFromWordleId(int wordleId)
+        {
+            var formattedDate = (AppConstants.WordleStartDate.AddDays(wordleId)).ToString("d MMMM yyyy");
+            return formattedDate;
+        }
+
     }
 }

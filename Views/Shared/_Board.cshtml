@@ -1,0 +1,13 @@
+﻿@using wordleboard.Utils;
+@model Board 
+
+<div class="card">
+    <div class="card-header">
+        @Model.BoardName
+    </div>
+    <div class="card-body">
+        <h5 id="card-text" class="card-text">@Model.BoardDescription</h5>
+        <h6 class="card-text">Start date: @AppUtils.FormatDate(Model.StartDate)</h6>
+        <a asp-controller="Board" asp-action="Index" asp-route-boardId="@Model.Id" class="btn btn-primary">Open</a>
+    </div>
+</div>

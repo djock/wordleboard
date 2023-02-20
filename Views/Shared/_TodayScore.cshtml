@@ -1,0 +1,72 @@
+﻿@model UserWordle
+
+@{
+    //asp - controller = "Home" asp - action = "Index" method = "post"
+
+    var points = 0;
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#score-form").submit(function (e) {
+            e.preventDefault();
+
+            // Get the form data
+            var pointsVal = $("#wordle-points").val();
+            var bonusVal = $("#wordle-bonus").val();
+            console.log('points ' + pointsVal + ' bonus ' + bonusVal)
+
+            $("#holder").html("");
+
+            // Make the AJAX call
+            $.ajax({
+                url: "/api/SubmitWordle",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({ points: pointsVal, bonus: bonusVal }),
+                success: function (result) {
+                    console.log("Success:", result);
+
+                    $("#holder").append($('<h4>Score for today:' + pointsVal + '</h4>'));
+                    $("#holder").append($('<h4> Today wordle:' + result + '</h4>'));
+                },
+                error: function (error) {
+                    console.log("Error:", error); 
+                }
+            });
+        });
+    });
+
+</script>
+
+
+@if (Model.Points == 0)
+{
+    <div id="holder">
+        <form id="score-form" role="form">
+            <h4>Submit Score for today</h4>
+
+            <div class="row g-3 align-items-center">
+
+                <div class="col-auto form-floating mb-2">
+                    <input id="wordle-points" type="number" name="points" min="0" max="10" class="form-control" placeholder="Points">
+                    <label for="points">Points</label>
+                </div>
+
+                <div class="col-auto form-floating mb-2">
+                    <input id="wordle-bonus" type="number" name="bonus" min="0" max="5" class="form-control" placeholder="Points">
+                    <label for="bonus">Bonus</label>
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+} else
+{
+    <h4> Score for today: @Model.Points</h4>
+}
