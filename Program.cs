@@ -26,6 +26,7 @@ builder.Services.AddScoped<IBoardRepository, BoardRepository>();
 builder.Services.AddScoped<IWordleRepository, WordleRepository>();
 builder.Services.AddScoped<IWordleResultsRepository, WordleResultsRepository>();
 builder.Services.AddHttpClient<IWordleResultsRepository, WordleResultsRepository>();
+builder.Services.AddHttpClient<IDictionaryRepository, DictionaryRepository>();
 
 builder.Services.AddScoped<UserManager<ApplicationUser>, UserManager<ApplicationUser>>();
 builder.Services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
