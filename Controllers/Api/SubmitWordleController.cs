@@ -37,14 +37,14 @@ namespace wordleboard.Controllers.Api
                     Bonus = wordleScore.Bonus
                 };
 
-                //if (_wordleRepo.AllWordlesForUser(user.Id).Exists(x => x.WordleId == userWordle.WordleId && x.UserId == userWordle.UserId))
-                //{
-                //    _wordleRepo.UpdateWordle(userWordle);
-                //}
-                //else
-                //{
-                //    _wordleRepo.AddWordle(userWordle);
-                //}
+                if (_wordleRepo.AllWordlesForUser(user.Id).Exists(x => x.WordleId == userWordle.WordleId && x.UserId == userWordle.UserId))
+                {
+                    _wordleRepo.UpdateWordle(userWordle);
+                }
+                else
+                {
+                    _wordleRepo.AddWordle(userWordle);
+                }
 
                 var today = await _wordleResultsRepository.GetToday();
                 HttpContext.Response.Cookies.Append($"wordle_{AppUtils.TodayWordleId}", today);

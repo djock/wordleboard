@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using wordleboard.Models;
 using wordleboard.Utils;
+using wordleboard.ViewModels;
 
 namespace wordleboard.Controllers
 {
@@ -43,7 +44,12 @@ namespace wordleboard.Controllers
                     Console.WriteLine("Can't find score for today");
                 }
 
-                return View(userWordle);
+                string todayCookie = HttpContext.Request.Cookies[$"wordle_{AppUtils.TodayWordleId}"];
+                Console.WriteLine($"Today cookie: {todayCookie}");
+
+                var todayWordleViewModel = new TodayWordleViewModel(userWordle, todayCookie);
+
+                return View(todayWordleViewModel);
             }
 
             return RedirectToAction("Welcome");

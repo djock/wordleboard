@@ -1,10 +1,7 @@
-﻿@model UserWordle
+﻿@using Microsoft.AspNetCore.Http
 
-@{
-    //asp - controller = "Home" asp - action = "Index" method = "post"
+@model TodayWordleViewModel
 
-    var points = 0;
-}
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -18,6 +15,8 @@
             console.log('points ' + pointsVal + ' bonus ' + bonusVal)
 
             $("#holder").html("");
+            $("#holder").append($('<h4><i>Submitting...</i></h4">));
+
 
             // Make the AJAX call
             $.ajax({
@@ -27,6 +26,7 @@
                 data: JSON.stringify({ points: pointsVal, bonus: bonusVal }),
                 success: function (result) {
                     console.log("Success:", result);
+                    $("#holder").html("");
 
                     $("#holder").append($('<h4>Score for today:' + pointsVal + '</h4>'));
                     $("#holder").append($('<h4> Today wordle: ' + result + '</h4>'));
@@ -41,7 +41,7 @@
 </script>
 
 
-@if (Model.Points == 0)
+@if (Model.Wordle.Points == 0)
 {
     <div id="holder">
         <form id="score-form" role="form">
@@ -67,5 +67,9 @@
     </div>
 } else
 {
-    <h4> Score for today: @Model.Points</h4>
+    <h4> Score for today: @Model.Wordle.Points</h4>
+    @if (!string.IsNullOrEmpty(Model.Cookie))
+    {
+        <h4> Today wordle: @Model.Cookie</h4>
+    }
 }
