@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http
-
-@model TodayWordleViewModel
+﻿@model TodayWordleViewModel
 
 <script type="text/javascript">
 
@@ -15,8 +13,6 @@
             console.log('points ' + pointsVal + ' bonus ' + bonusVal)
 
             $("#holder").html("");
-            $("#holder").append($('<h4><i>Submitting...</i></h4">));
-
 
             // Make the AJAX call
             $.ajax({
@@ -26,8 +22,6 @@
                 data: JSON.stringify({ points: pointsVal, bonus: bonusVal }),
                 success: function (result) {
                     console.log("Success:", result);
-                    $("#holder").html("");
-
                     $("#holder").append($('<h4>Score for today:' + pointsVal + '</h4>'));
                     $("#holder").append($('<h4> Today wordle: ' + result + '</h4>'));
                 },
