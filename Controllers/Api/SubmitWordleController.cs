@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using wordleboard.Models;
 using wordleboard.Utils;
@@ -58,9 +59,22 @@ namespace wordleboard.Controllers.Api
 
                     definition = await _dictionaryRepository.GetWordDefinition(today);
                     
-                    Console.WriteLine("definition " + definition.Word);
-                    
-                    return Ok(definition.Word);
+                    var response = new
+                    {
+                        message = "Success!",
+                        data = definition,
+                    };
+
+                    // Serialize the object to JSON
+                    var json = JsonSerializer.Serialize(response);
+
+                    // Return the JSON response
+                    return new ContentResult
+                    {
+                        Content = json,
+                        ContentType = "application/json",
+                        StatusCode = 200,
+                    };
                 }
 
                 return Ok(today);

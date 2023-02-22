@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace wordleboard.Models;
 
@@ -38,7 +39,7 @@ public class DictionaryRepository : IDictionaryRepository
                     PropertyNameCaseInsensitive = true,
                 };
                 
-                todayWordleResult = JsonSerializer.Deserialize<List<WordDefinition>>(body, options);
+                todayWordleResult = JsonConvert.DeserializeObject<List<WordDefinition>>(body);
             }
             catch (Exception e)
             {

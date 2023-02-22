@@ -9,10 +9,10 @@
 
             // Get the form data
             var pointsVal = $("#wordle-points").val();
-            var bonusVal = $("#wordle-bonus").val();
+            var bonusVal = $("#wordle-bonus").val() === '' ? 0 : $("#wordle-bonus").val();
             console.log('points ' + pointsVal + ' bonus ' + bonusVal)
 
-            $("#holder").html("");
+            $("#container").html("");
 
             // Make the AJAX call
             $.ajax({
@@ -22,8 +22,30 @@
                 data: JSON.stringify({ points: pointsVal, bonus: bonusVal }),
                 success: function (result) {
                     console.log("Success:", result);
-                    $("#holder").append($('<h4>Score for today:' + pointsVal + '</h4>'));
-                    $("#holder").append($('<h4> Today wordle: ' + result + '</h4>'));
+                    const container = document.getElementById('container');
+                    
+                    const scoreHeader = document.createElement('h4');
+                    scoreHeader.textContent = 'Today score ' + pointsVal;
+                    container.appendChild(scoreHeader);
+                    
+                    const word = result.data.Word;
+                    
+                    const meanings = result.data.Meanings;
+                    
+                    // Create a new <h2> element to display the word
+                    const wordHeader = document.createElement('h4');
+                    wordHeader.textContent = 'Today word ' + word.toUpperCase();
+                    
+                    // Create a new <ul> element to display the meanings
+                    const meaningsList = document.createElement('ul');
+                    meanings[0].Definitions.forEach(definition => {
+                      const definitionItem = document.createElement('li');
+                      definitionItem.textContent = meanings[0].PartOfSpeech + ': ' + definition.DefinitionText;
+                      meaningsList.appendChild(definitionItem);
+                    });
+
+                    container.appendChild(wordHeader);
+                    container.appendChild(meaningsList);
                 },
                 error: function (error) {
                     console.log("Error:", error); 
@@ -37,7 +59,7 @@
 
 @if (Model.Wordle.Points == 0)
 {
-    <div id="holder">
+    <div id="container">
         <form id="score-form" role="form">
             <h4>Submit Score for today</h4>
 

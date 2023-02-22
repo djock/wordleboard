@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace wordleboard.Models;
 public class WordDefinition
 {
@@ -26,6 +28,7 @@ public class Meaning
 
 public class Definition
 {
+    [JsonProperty("definition")]
     public string DefinitionText { get; set; }
     public List<string> Synonyms { get; set; }
     public List<string> Antonyms { get; set; }
