@@ -1,6 +1,6 @@
-﻿using System.Text.Json;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 using wordleboard.Models;
 using wordleboard.Utils;
 
@@ -40,25 +40,25 @@ namespace wordleboard.Controllers.Api
                     Bonus = wordleScore.Bonus
                 };
 
-                // if (_wordleRepo.AllWordlesForUser(user.Id).Exists(x => x.WordleId == userWordle.WordleId && x.UserId == userWordle.UserId))
-                // {
-                //     _wordleRepo.UpdateWordle(userWordle);
-                // }
-                // else
-                // {
-                //     _wordleRepo.AddWordle(userWordle);
-                // }
+                if (_wordleRepo.AllWordlesForUser(user.Id).Exists(x => x.WordleId == userWordle.WordleId && x.UserId == userWordle.UserId))
+                {
+                    _wordleRepo.UpdateWordle(userWordle);
+                }
+                else
+                {
+                    _wordleRepo.AddWordle(userWordle);
+                }
 
                 var today = await _wordleResultsRepository.GetToday();
-                
+
                 WordDefinition definition = null;
-                
+
                 if (!string.IsNullOrEmpty(today))
                 {
                     HttpContext.Response.Cookies.Append($"wordle_{AppUtils.TodayWordleId}", today);
 
                     definition = await _dictionaryRepository.GetWordDefinition(today);
-                    
+
                     var response = new
                     {
                         message = "Success!",

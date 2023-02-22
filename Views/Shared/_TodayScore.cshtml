@@ -12,7 +12,7 @@
             var bonusVal = $("#wordle-bonus").val() === '' ? 0 : $("#wordle-bonus").val();
             console.log('points ' + pointsVal + ' bonus ' + bonusVal)
 
-            $("#container").html("");
+            $("#container").html("<p>Submitting...</p>");
 
             // Make the AJAX call
             $.ajax({
@@ -21,6 +21,7 @@
                 contentType: "application/json",
                 data: JSON.stringify({ points: pointsVal, bonus: bonusVal }),
                 success: function (result) {
+                    $("#container").html("");
                     console.log("Success:", result);
                     const container = document.getElementById('container');
                     
