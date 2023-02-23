@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using wordleboard.Models;
 using wordleboard.ViewModels;
+using wordleboard.Web;
 
 namespace wordleboard.Controllers
 {

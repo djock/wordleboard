@@ -1,0 +1,12 @@
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\wordleboard.Models.csproj.AssemblyReference.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\wordleboard.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\wordleboard.Models.AssemblyInfoInputs.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\wordleboard.Models.AssemblyInfo.cs
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\wordleboard.Models.csproj.CoreCompileInputs.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Models\bin\Debug\net6.0\wordleboard.Models.deps.json
+D:\Projects\dotnet\wordleboard\wordleboard.Models\bin\Debug\net6.0\wordleboard.Models.dll
+D:\Projects\dotnet\wordleboard\wordleboard.Models\bin\Debug\net6.0\wordleboard.Models.pdb
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\wordleboard.Models.dll
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\refint\wordleboard.Models.dll
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\wordleboard.Models.pdb
+D:\Projects\dotnet\wordleboard\wordleboard.Models\obj\Debug\net6.0\ref\wordleboard.Models.dll

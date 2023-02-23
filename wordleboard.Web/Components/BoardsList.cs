@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using wordleboard.Models;
+using wordleboard.Web;
 
 namespace wordleboard.Components
 {

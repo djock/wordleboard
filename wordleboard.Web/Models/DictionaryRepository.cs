@@ -1,7 +1,8 @@
-using System.Text.Json;
 using Newtonsoft.Json;
+using System.Text.Json;
+using wordleboard.Models;
 
-namespace wordleboard.Models;
+namespace wordleboard.Web;
 
 public class DictionaryRepository : IDictionaryRepository
 {
@@ -11,7 +12,7 @@ public class DictionaryRepository : IDictionaryRepository
     {
         _httpClient = httpClient;
     }
-    
+
     public async Task<WordDefinition> GetWordDefinition(string word)
     {
         var request = new HttpRequestMessage
@@ -28,7 +29,7 @@ public class DictionaryRepository : IDictionaryRepository
         {
             response.EnsureSuccessStatusCode();
             var body = await response.Content.ReadAsStringAsync();
-            
+
             Console.WriteLine(body);
             List<WordDefinition> todayWordleResult = new List<WordDefinition>();
 
@@ -38,7 +39,7 @@ public class DictionaryRepository : IDictionaryRepository
                 {
                     PropertyNameCaseInsensitive = true,
                 };
-                
+
                 todayWordleResult = JsonConvert.DeserializeObject<List<WordDefinition>>(body);
             }
             catch (Exception e)

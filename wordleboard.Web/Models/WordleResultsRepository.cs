@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
+using wordleboard.Models;
 
-namespace wordleboard.Models
+namespace wordleboard.Web
 {
     public class WordleResultsRepository : IWordleResultsRepository
     {

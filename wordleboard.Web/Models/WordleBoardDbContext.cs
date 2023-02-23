@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using wordleboard.Models;
 
-namespace wordleboard.Models
+namespace wordleboard.Web
 {
     public class WordleBoardDbContext : IdentityDbContext<ApplicationUser>
     {

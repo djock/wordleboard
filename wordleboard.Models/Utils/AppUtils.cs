@@ -1,4 +1,6 @@
-﻿namespace wordleboard.Utils
+﻿using wordleboard.Utils;
+
+namespace wordleboard.Web
 {
     public class AppUtils
     {

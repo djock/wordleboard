@@ -1,4 +1,4 @@
-﻿namespace wordleboard.Models
+﻿namespace wordleboard.Web
 {
     public interface IWordleResultsRepository
     {

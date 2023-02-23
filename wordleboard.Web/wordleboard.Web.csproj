@@ -26,4 +26,8 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\wordleboard.Models\wordleboard.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,6 @@
-﻿namespace wordleboard.Models
+﻿using wordleboard.Models;
+
+namespace wordleboard.Web
 {
     public class WordleRepository : IWordleRepository
     {

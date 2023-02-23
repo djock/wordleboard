@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using wordleboard.Models;
-using wordleboard.Utils;
 using wordleboard.ViewModels;
+using wordleboard.Web;
 
 namespace wordleboard.Controllers
 {

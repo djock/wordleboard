@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using wordleboard.Models;
-using wordleboard.Utils;
 using wordleboard.ViewModels;
+using wordleboard.Web;
 
 namespace wordleboard.Controllers
 {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using wordleboard.Models;
-using wordleboard.Utils;
+using wordleboard.Web;
 
 namespace wordleboard.Controllers.Api
 {
