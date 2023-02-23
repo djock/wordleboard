@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wordleboard", "wordleboard.csproj", "{95D2C9E9-2180-4D92-94CA-1D316CCB57C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wordleboard.Web", "wordleboard.Web\wordleboard.Web.csproj", "{F13FD4B7-CEC6-4FCA-A464-6BE6AABB9BF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95D2C9E9-2180-4D92-94CA-1D316CCB57C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95D2C9E9-2180-4D92-94CA-1D316CCB57C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95D2C9E9-2180-4D92-94CA-1D316CCB57C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95D2C9E9-2180-4D92-94CA-1D316CCB57C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13FD4B7-CEC6-4FCA-A464-6BE6AABB9BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13FD4B7-CEC6-4FCA-A464-6BE6AABB9BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13FD4B7-CEC6-4FCA-A464-6BE6AABB9BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13FD4B7-CEC6-4FCA-A464-6BE6AABB9BF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
