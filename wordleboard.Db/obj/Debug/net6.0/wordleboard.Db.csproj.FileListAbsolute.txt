@@ -1,0 +1,15 @@
+D:\Projects\dotnet\wordleboard\wordleboard.Db\bin\Debug\net6.0\wordleboard.Db.deps.json
+D:\Projects\dotnet\wordleboard\wordleboard.Db\bin\Debug\net6.0\wordleboard.Db.dll
+D:\Projects\dotnet\wordleboard\wordleboard.Db\bin\Debug\net6.0\wordleboard.Db.pdb
+D:\Projects\dotnet\wordleboard\wordleboard.Db\bin\Debug\net6.0\wordleboard.Models.dll
+D:\Projects\dotnet\wordleboard\wordleboard.Db\bin\Debug\net6.0\wordleboard.Models.pdb
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\wordleboard.Db.csproj.AssemblyReference.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\wordleboard.Db.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\wordleboard.Db.AssemblyInfoInputs.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\wordleboard.Db.AssemblyInfo.cs
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\wordleboard.Db.csproj.CoreCompileInputs.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\wordleboard.Db.csproj.CopyComplete
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\wordleboard.Db.dll
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\refint\wordleboard.Db.dll
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\wordleboard.Db.pdb
+D:\Projects\dotnet\wordleboard\wordleboard.Db\obj\Debug\net6.0\ref\wordleboard.Db.dll

@@ -1,0 +1,9 @@
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.csproj.AssemblyReference.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.AssemblyInfoInputs.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.AssemblyInfo.cs
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.csproj.CoreCompileInputs.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.MvcApplicationPartsAssemblyInfo.cs
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.RazorAssemblyInfo.cache
+D:\Projects\dotnet\wordleboard\wordleboard.Api\obj\Release\net6.0\wordleboard.Api.RazorAssemblyInfo.cs

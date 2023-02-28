@@ -1,10 +1,9 @@
-﻿using wordleboard.Utils;
-
-namespace wordleboard.Web
+﻿namespace wordleboard.Web
 {
     public class AppUtils
     {
-        public static int TodayWordleId => DateTime.Now.Subtract(AppConstants.WordleStartDate).Days;
+
+        public static int TodayWordleId => DateTime.Now.Subtract(new DateTime(2021, 6, 19)).Days;
 
         public static string FormatDate(long seconds)
         {
@@ -22,14 +21,14 @@ namespace wordleboard.Web
         {
             var date = GetDateFromSeconds(seconds);
 
-            var wordleId = date.Subtract(AppConstants.WordleStartDate).Days;
+            var wordleId = date.Subtract(new DateTime(2021, 6, 19)).Days;
 
             return wordleId;
         }
 
         public static string GetDateFromWordleId(int wordleId)
         {
-            var formattedDate = (AppConstants.WordleStartDate.AddDays(wordleId)).ToString("d MMMM yyyy");
+            var formattedDate = (new DateTime(2021, 6, 19).AddDays(wordleId)).ToString("d MMMM yyyy");
             return formattedDate;
         }
 

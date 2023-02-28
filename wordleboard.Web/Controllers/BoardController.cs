@@ -1,78 +1,36 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using wordleboard.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using wordleboard.Services;
 using wordleboard.ViewModels;
-using wordleboard.Web;
 
 namespace wordleboard.Controllers
 {
     public class BoardController : Controller
     {
-        private readonly IBoardRepository _boardRepo;
-        private readonly IWordleRepository _wordleRepo;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private IBoardService _boardService;
+        private IWordleService _wordleService;
+        private IUserService _userService;
 
-        public BoardController(IBoardRepository boardRepo, IWordleRepository wordleRepo, UserManager<ApplicationUser> userManager)
+        public BoardController(IBoardService boardService, IUserService userService, IWordleService wordleService)
         {
-            _boardRepo = boardRepo;
-            _wordleRepo = wordleRepo;
-            _userManager = userManager;
+            _userService = userService;
+            _wordleService = wordleService;
+            _boardService = boardService;
         }
 
         public async Task<IActionResult> Index(int boardId)
         {
-            var usersIdList = _boardRepo.GetAllUsersInBoard(boardId);
-            var board = _boardRepo.GetById(boardId);
-            List<UserWordle> userWordles = new List<UserWordle>();
+            var board = _boardService.GetBoard(boardId);
 
             if (board == null)
             {
                 return NoContent();
             }
 
-            List<ApplicationUser> usersModels = new List<ApplicationUser>();
+            var usersIdList = _boardService.GetAllUsersInBoard(boardId);
+            var users = await _userService.GetUsersByIds(usersIdList);
+            var usersWordles = _wordleService.GetBoardWordlesForUsers(board, usersIdList);
 
-            foreach (var userId in usersIdList)
-            {
-                var userModel = await _userManager.FindByIdAsync(userId);
-
-                if (userModel != null)
-                {
-                    usersModels.Add(userModel);
-                }
-            }
-
-            List<UserWordle> userResults = new();
-
-            Console.WriteLine("Users count: " + boardId);
-
-            var startDate = AppUtils.GetWordleDayFromTimestamp(board.StartDate);
-
-            foreach (var user in usersIdList)
-            {
-                if (board.DaysCount > 0)
-                {
-                    var endDate = startDate + board.DaysCount - 1;
-
-                    var maxDay = endDate <= AppUtils.TodayWordleId ? endDate : AppUtils.TodayWordleId;
-
-                    for (int i = startDate; i <= maxDay; i++)
-                    {
-                        var wordle = _wordleRepo.GetByIdForUser(i, user);
-                        userWordles.Add(wordle);
-                    }
-                }
-                else
-                {
-                    for (var i = startDate; i <= AppUtils.TodayWordleId; i++)
-                    {
-                        var wordle = _wordleRepo.GetByIdForUser(i, user);
-                        userWordles.Add(wordle);
-                    }
-                }
-            }
-
-            var boardViewModel = new BoardViewModel(board, usersModels, userWordles, board.DaysCount);
+            var boardViewModel = new BoardViewModel(board, users, usersWordles, board.DaysCount);
 
             return View(boardViewModel);
         }
@@ -85,21 +43,9 @@ namespace wordleboard.Controllers
         [HttpPost]
         public IActionResult Create(DateTime selectedDate, string boardName, string boardDescription, int daysCount)
         {
-            long secondsSinceEpoch = (long)(selectedDate - new DateTime(1970, 1, 1)).TotalSeconds;
+            var applicationUser = _userService.ActiveUser;
 
-            var user = _userManager.GetUserAsync(User).Result;
-            var applicationUser = user as ApplicationUser;
-
-            var board = new Board
-            {
-                BoardName = boardName,
-                BoardDescription = boardDescription,
-                StartDate = secondsSinceEpoch,
-                DaysCount = daysCount,
-            };
-
-
-            _boardRepo.AddBoard(board, applicationUser);
+            _boardService.CreateBoard(boardName, boardDescription, daysCount, selectedDate, applicationUser);
 
             return RedirectToAction("Index", "Home");
         }

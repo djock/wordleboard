@@ -14,9 +14,7 @@ namespace wordleboard.Models
 
         public override string ToString()
         {
-            {
-                return $"UserWordle: {Id} {WordleId} {UserId} {Points} {Bonus}";
-            }
+            return $"UserWordle: {Id} {WordleId} {UserId} {Points} {Bonus}";
         }
     }
 }

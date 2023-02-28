@@ -1,13 +1,9 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using wordleboard.Models;
-using wordleboard.Web;
+using wordleboard.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("WordleboardDbContextConnection") ?? throw new InvalidOperationException("Connection string 'WordleboardDbContextConnection' not found.");
 
-builder.Services.AddDbContext<WordleBoardDbContext>(options =>
-    options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
@@ -24,14 +20,9 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IBoardRepository, BoardRepository>();
-builder.Services.AddScoped<IWordleRepository, WordleRepository>();
-builder.Services.AddScoped<IWordleResultsRepository, WordleResultsRepository>();
-builder.Services.AddHttpClient<IWordleResultsRepository, WordleResultsRepository>();
-builder.Services.AddHttpClient<IDictionaryRepository, DictionaryRepository>();
-
 builder.Services.AddScoped<UserManager<ApplicationUser>, UserManager<ApplicationUser>>();
 builder.Services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddSession();
 
@@ -71,10 +62,5 @@ app.UseEndpoints(endpoints =>
         pattern: "{controller=Home}/{action=Index}/{id?}"
     );
 });
-
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

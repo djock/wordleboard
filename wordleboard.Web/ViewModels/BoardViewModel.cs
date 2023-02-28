@@ -1,4 +1,5 @@
-﻿using wordleboard.Models;
+﻿
+using wordleboard.Models;
 
 namespace wordleboard.ViewModels
 {
@@ -8,7 +9,6 @@ namespace wordleboard.ViewModels
         public List<Models.UserWordle> Wordles { get; set; }
         public List<ApplicationUser> Users { get; set; }
         public int Days { get; set; }
-        public BoardViewModel() { }
 
         public BoardViewModel(Board board, List<ApplicationUser> users, List<UserWordle> wordles, int days)
         {

@@ -13,7 +13,6 @@ namespace wordleboard.Models
         public long StartDate { get; set; }
         public virtual ICollection<BoardUser> BoardUsers { get; set; }
 
-        public Board() { }
         public override string ToString()
         {
             return $"User: BoardId: {Id}, BoardName: {BoardName}, StartDate: {StartDate}";

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using wordleboard.Models;
 using wordleboard.Web;
 
 #nullable disable
