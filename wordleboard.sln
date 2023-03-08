@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wordleboard.Services", "wor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wordleboard.Db", "wordleboard.Db\wordleboard.Db.csproj", "{8785D730-BA1B-4F18-863A-4990402A838A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wordleboard.Api", "wordleboard.Api\wordleboard.Api.csproj", "{9B467C89-221B-42B3-973E-AAAADF9869F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wordleboard.Api", "wordleboard.Api\wordleboard.Api.csproj", "{AC0649C0-261F-4C89-880F-E74B6E2FF3A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{8785D730-BA1B-4F18-863A-4990402A838A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8785D730-BA1B-4F18-863A-4990402A838A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8785D730-BA1B-4F18-863A-4990402A838A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B467C89-221B-42B3-973E-AAAADF9869F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B467C89-221B-42B3-973E-AAAADF9869F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B467C89-221B-42B3-973E-AAAADF9869F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B467C89-221B-42B3-973E-AAAADF9869F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0649C0-261F-4C89-880F-E74B6E2FF3A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0649C0-261F-4C89-880F-E74B6E2FF3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0649C0-261F-4C89-880F-E74B6E2FF3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0649C0-261F-4C89-880F-E74B6E2FF3A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

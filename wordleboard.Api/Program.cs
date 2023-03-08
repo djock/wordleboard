@@ -10,16 +10,16 @@ var connectionString = builder.Configuration.GetConnectionString("WordleboardDbC
 builder.Services.AddDbContext<WordleBoardDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireDigit = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireUppercase = false;
-    options.User.RequireUniqueEmail = false;
-})
-    .AddEntityFrameworkStores<WordleBoardDbContext>();
+//builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+//{
+//    options.SignIn.RequireConfirmedAccount = false;
+//    options.Password.RequireNonAlphanumeric = false;
+//    options.Password.RequireDigit = false;
+//    options.Password.RequireLowercase = false;
+//    options.Password.RequireUppercase = false;
+//    options.User.RequireUniqueEmail = false;
+//})
+//    .AddEntityFrameworkStores<WordleBoardDbContext>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

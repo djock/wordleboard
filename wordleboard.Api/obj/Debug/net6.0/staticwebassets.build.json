@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "KrMdXS1UevtQUG8r4BD4t/E0WTGCGdg1ZR4Gc8l+/Ls=",
+  "Source": "wordleboard.Api",
+  "BasePath": "_content/wordleboard.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
